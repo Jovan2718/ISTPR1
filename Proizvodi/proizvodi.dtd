@@ -1,12 +1,11 @@
 <!ELEMENT Prodavnica (Proizvod+)>
-<!ELEMENT Proizvod (Kategorije, Cena, TekstProizvoda, Oznaka+, Akcija+)>
-<!ELEMENT Kategorije (KategorijaProizvoda)+>
+<!ELEMENT Proizvod (KategorijaProizvoda+, Cena, TekstProizvoda, oznake, Akcija+)>
 <!ELEMENT KategorijaProizvoda EMPTY>
 <!ELEMENT Cena (#PCDATA)>
 <!ELEMENT TekstProizvoda (#PCDATA)>
+<!ELEMENT oznake (Oznaka)+>
 <!ELEMENT Oznaka (#PCDATA)>
 <!ELEMENT Akcija EMPTY>
-<!ATTLIST Kategorije xmnls CDATA #FIXED ''>
 <!ATTLIST KategorijaProizvoda tip (Laptop|Monitor|Mis|Tastatura|Slusalice|Stolica|Gaming|Work|Studio) #REQUIRED>
 <!ATTLIST Cena valuta CDATA #FIXED "rsd">
 <!ATTLIST Akcija cena CDATA #IMPLIED>

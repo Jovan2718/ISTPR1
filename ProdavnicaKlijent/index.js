@@ -28,14 +28,15 @@ app.get("/sviproizvodi", (req, res) => {
             
             response.data.forEach(element => {
                 if (element.popust.vrednostPopusta)
-                    imaPopust = "Akcija!"
-                prikaz += `<div class="kartica">
+                    imaPopust = "Akcija"
+                prikaz += `<div class="kartica kolona">
             <div class="ime">${element.tekstProizvoda}</div>
             <div class = "cena">${element.cena}rsd.</div>
-            <div class = "popust">${imaPopust}</div>
-            <div class = "detaljnije"><a href="/detaljnije/${element.id}">Detaljnije</a></div>
+            <div class = "popust">${imaPopust} ${element.popust.vrednostPopusta}%</div>
+            <div class = "detaljnije"><a href="/detaljnije/${element.id}" id = "detaljnije">Detaljnije</a></div>
             <div class = "dugme">
             <a href="/obrisi/${element.id}" class = "dugme1" id = "obrisi">Obrisi</a>
+            <span style = "color:white">|</span>
             <a href="/promenavrednosti/${element.id}"  class = "dugme1" >Update</a>
             </div>
         </div>`
@@ -55,7 +56,7 @@ app.get("/detaljnije/:id", (req, res) => {
         .then(response => {
             let prikaz = ""
             let cenaSaPopustom =response.data.cena - ((parseInt(response.data.cena)) * (parseInt(response.data.popust.vrednostPopusta)) / 100)
-            prikaz += `<div class = "kartica">
+            prikaz += `<div class = "kartica1">
             <div>${response.data.tekstProizvoda}</div>
             <div>${response.data.kategorijaProizvoda}</div>
             ${prikaziOznake(response.data)}` 
@@ -119,14 +120,15 @@ app.post("/filtrirajproizvodzaoznaku", (req, res) => {
             let imaPopust = ""
             response.data.forEach(element => {
                 if (element.popust.vrednostPopusta)
-                    imaPopust = "Akcija!"
+                    imaPopust = "Akcija"
                 prikaz += `<div class="kartica">
                 <div class="ime">${element.tekstProizvoda}</div>
                 <div class = "cena">${element.cena}rsd.</div>
-                <div class = "popust">${imaPopust}</div>
-                <div class = "detaljnije"><a href="/detaljnije/${element.id}">Detaljnije</a></div>
+                <div class = "popust">${imaPopust} ${element.popust.vrednostPopusta}%</div>
+                <div class = "detaljnije"><a href="/detaljnije/${element.id}" id = "detaljnije">Detaljnije</a></div>
                 <div class = "dugme">
                 <a href="/obrisi/${element.id}" class = "dugme1" id = "obrisi">Obrisi</a>
+                <span style = "color:white">|</span>
                 <a href="/promenavrednosti/${element.id}"  class = "dugme1" id = "update">Update</a>
                 </div>
             </div>`
@@ -144,14 +146,15 @@ app.post("/filtrirajproizvodzakategoriju", (req, res) => {
             let imaPopust = ""
             response.data.forEach(element => {
                 if (element.popust.vrednostPopusta)
-                    imaPopust = "Akcija!"
+                    imaPopust = "Akcija"
                 prikaz += `<div class="kartica">
                 <div class="ime">${element.tekstProizvoda}</div>
                 <div class = "cena">${element.cena}rsd.</div>
-                <div class = "popust">${imaPopust}</div>
-                <div class = "detaljnije"><a href="/detaljnije/${element.id}">Detaljnije</a></div>
+                <div class = "popust">${imaPopust} ${element.popust.vrednostPopusta}%</div>
+                <div class = "detaljnije"><a href="/detaljnije/${element.id}" id = "detaljnije">Detaljnije</a></div>
                 <div class = "dugme">
                 <a href="/obrisi/${element.id}" class = "dugme1" id = "obrisi">Obrisi</a>
+                <span style = "color:white">|</span>
                 <a href="/promenavrednosti/${element.id}"  class = "dugme1" id = "update">Update</a>
                 </div>
             </div>`
@@ -168,20 +171,20 @@ app.get("/promenavrednosti/:id", (req, res) => {
             let prikaz = ""
             response.data.forEach(element => {
                 if (element.id == req.params["id"]) {
-                    prikaz += `<form action="/update/${element.id}" method="post"><div>
-            <div><label>Naziv proizvoda:</label><input type="text" value="${element.tekstProizvoda}" name="tekstProizvoda"></div>
-            <div><label>Cena proizvoda:</label><input type="number" value="${element.cena}"  name="cena"></div>
+                    prikaz += `<div class = "centriraj"><form action="/update/${element.id}" method="post">
+            <div><label class = "tekst">Naziv proizvoda:</label><br><input type="text" value="${element.tekstProizvoda}" name="tekstProizvoda"></div>
+            <div><label class = "tekst">Cena proizvoda:</label><br><input type="number" value="${element.cena}"  name="cena"></div>
             <div>   
-            <label>Kategorija proizvoda:</label><select name="kategorijaProizvoda" id="kategorijaProizvoda">
+            <label class = "tekst">Kategorija proizvoda:</label><br><select name="kategorijaProizvoda" id="kategorijaProizvoda">
                 <option value="laptopovi">Laptopovi</option>
                 <option value="stolice">Stolice</option>
                 <option value="tastature">Tastature</option>
             </select>
             </div>
-            <div><label>Oznake proizvoda:</label><input type="text" value="${element.oznaka}"  name="oznaka"></div>
-            <div><label>Popust na proizvod:</label><input type="text" value="${element.popust.vrednostPopusta}"  name="vrednostPopusta"></div>
-            <div><label>Datum isteka popusta na proizvod:</label><input type="text" value="${element.popust.datumIsteka}"  name="datumIsteka"></div>
-            <div><button type="submit">Update</button></div></div></form> `
+            <div><label class = "tekst">Oznake proizvoda:</label><br><input type="text" value="${element.oznaka}"  name="oznaka"></div>
+            <div><label class = "tekst">Popust na proizvod:</label><br><input type="text" value="${element.popust.vrednostPopusta}"  name="vrednostPopusta"></div>
+            <div><label class = "tekst">Datum isteka popusta na proizvod:</label><br><input type="text" value="${element.popust.datumIsteka}"  name="datumIsteka"></div>
+            <div><button type="submit">Update</button></div></form> </div>`
                 }
             })
             res.send(procitajStranicuZaNaziv("update").replace("#{data}", prikaz))

@@ -7,17 +7,17 @@
     <title>Update proizvoda</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap');
-
+        @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Coda Caption';
+            font-family: 'Staatliches', cursive;
         }
 
         body {
-            background-color: white;
-            font-size: 20px;
+            background-color: #33007b;
+            font-size: 25px;
             align-items: center;
             min-height: 80vh;
             justify-content: center;
@@ -102,18 +102,53 @@
 
         input {
             width: 500px;
+            height: 25px;
+            margin-bottom: 10px;
         }
 
         select {
             width: 450px;
         }
+        .tekst{
+            color: white;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+        .centriraj{
+            text-align: left;
+            display: flex;
+            justify-content: center;
+        }
+        select{
+            width: 500px;
+        }
+        button{
+            margin-top: 15px;
+            width: 500px;
+            height: 25px;
+            background-color: black;
+            border-radius: 5px;
+            border: 1px solid black;
+            color: white;
+        }
+        button:hover{
+            color: #fdb827;
+        border: 1px solid #fdb827;
+        transition: 0.2s ease-in;
+        }
     </style>
 </head>
 
 <body>
-    <nav>
-        <a href="/sviproizvodi">Pogledaj sve proizvode</a>
-        <a href="/dodajproizvod">Dodaj proizvod</a>
+    <nav style="margin-bottom: 30px">
+        <div><a href="/">Pocetna</a>
+            <div class="linija"></div>
+        </div>
+        <div><a href="/sviproizvodi">Proizvodi</a>
+            <div class="linija"></div>
+        </div>
+        <div><a href="/dodajproizvod">Dodaj proizvod</a>
+            <div class="linija"></div>
     </nav>
     <tbody>
         #{data}
